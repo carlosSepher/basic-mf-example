@@ -1,25 +1,31 @@
+import layout from "../public/layout.html";
+
 import { registerApplication, start } from "single-spa";
+import {
+  constructApplications,
+  constructRoutes,
+  constructLayoutEngine,
+} from "single-spa-layout";
 
-console.log("Bundle cargado")
+const routes = constructRoutes(layout);
 
-registerApplication({
-  name: "app-mf-javascript",
-  app:window.appJavascript,
-  activeWhen: ["/"],
-  customProps: {
-    codigo: "001",
-    nombre: "Buscar ...",
-  },
+const applications = constructApplications({
+  routes,
+  loadApp: async function (app) {
+    console.log("Cargando aplicación", app.name);
+    if (window[app.name]) {
+      return window[app.name];
+    }else{
+      throw new Error(`No se ha cargado la aplicación ${app.name}`);
+    }
+  }
 });
 
-registerApplication({
-  name: "app-mf-react",
-  app:window.appReact,
-  activeWhen: ["/"],
-  customProps: {
-    codigo: "002",
-    nombre: "Agendas",
-  },
+
+const layoutEngine = constructLayoutEngine({
+  routes,
+  applications,
 });
 
+applications.forEach(registerApplication)
 start();

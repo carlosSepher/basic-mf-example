@@ -17,6 +17,13 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "raw-loader",
+        },
+      }
     ],
   },
   plugins: [
