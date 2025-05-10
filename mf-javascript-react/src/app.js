@@ -4,7 +4,7 @@ import singleSpaReact from "single-spa-react";
 
 import Root from "./Root.jsx";
 
-window.appReact = singleSpaReact({
+const app = singleSpaReact({
   React,
   ReactDOMClient,
   rootComponent: Root,
@@ -14,3 +14,4 @@ window.appReact = singleSpaReact({
   }
 });
 
+export const {bootstrap, mount, unmount} = app;
