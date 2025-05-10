@@ -1,4 +1,4 @@
-window.appJavascript = {
+const app = {
   async bootstrap(props) {console.log("App Iniciada",props)},
   async mount(props) {
 
@@ -21,3 +21,6 @@ window.appJavascript = {
 
 },
 };
+
+
+export const { bootstrap, mount, unmount } = app;

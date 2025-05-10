@@ -13,10 +13,10 @@ const applications = constructApplications({
   routes,
   loadApp: async function (app) {
     console.log("Cargando aplicación", app.name);
-    if (window[app.name]) {
-      return window[app.name];
-    }else{
-      throw new Error(`No se ha cargado la aplicación ${app.name}`);
+    try {
+      return await System.import(app.name);
+    } catch (error) {
+      console.log("Error al cargar la aplicación", app.name, error);
     }
   }
 });

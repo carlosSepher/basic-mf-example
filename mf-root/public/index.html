@@ -1,5 +1,24 @@
 <body>
     <head>
+
+        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+    
+        <script type="systemjs-importmap">
+            {
+                "imports": {
+                    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/es5/system/single-spa.min.js",
+                    "react": "https://esm.sh/react@18.2.0",
+                    "react-dom": "https://esm.sh/react-dom@18.2.0",
+                    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client", 
+                    "app-mf-javascript": "//localhost:9001/main.js",
+                    "app-mf-react": "//localhost:9002/main.js",
+                    "root-config": "//localhost:9000/main.js"
+                }
+            }
+        </script>
+
         <script src="http://localhost:9001/main.js"></script>
         <script src="http://localhost:9002/main.js"></script>
     </head>
@@ -8,6 +27,9 @@
             <div id="single-spa-application:app-mf-react"></div>
             <div id="app-mf-javascript">
             </div>
+            <script>
+                System.import("root-config");
+            </script>
         </div>
         
     </body>
