@@ -34,12 +34,12 @@ module.exports = {
       filename: "index.html",
     }),
   ],
-  externals:[
-    "single-spa",
-    "react",
-    "react-dom",
-  "react-dom/client"
-  ],
+  externals: {
+    "react": "react",
+    "react-dom": "react-dom",
+    "react-dom/client": "react-dom/client",
+    "single-spa": "single-spa"
+  },  
   devServer: {
     static: {
       directory: path.resolve(__dirname, "dist"),
