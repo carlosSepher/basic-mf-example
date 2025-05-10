@@ -1,17 +1,17 @@
 import React from "react";
-import ReactDOMClient from "react-dom/client";
+import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
 
 import Root from "./Root.jsx";
 
-const app = singleSpaReact({
+const lifecycles = singleSpaReact({
   React,
-  ReactDOMClient,
+  ReactDOM,
   rootComponent: Root,
   errorBoundary(err, info, props) {
     console.error(err);
     return <div>Something went wrong</div>;
-  }
+  },
 });
 
-export const {bootstrap, mount, unmount} = app;
+export const { bootstrap, mount, unmount } = lifecycles;

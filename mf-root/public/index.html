@@ -1,36 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root Config</title>
+
+  <!-- 1) SystemJS core -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+  <!-- 2) Habilita AMD/UMD support (para que SystemJS entienda los bundles UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+
+  <!-- 3) Import map: define dónde están tus módulos -->
+  <script type="systemjs-importmap">
+  {
+    "imports": {
+      "single-spa":        "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/es5/system/single-spa.min.js",
+      "react":             "https://unpkg.com/react@18.2.0/umd/react.development.js",
+      "react-dom":         "https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js",
+      "app-mf-javascript": "http://localhost:9001/main.js",
+      "app-mf-react":      "http://localhost:9002/main.js",
+      "root-config":       "http://localhost:9000/main.js"
+    }
+  }
+  </script>
+</head>
 <body>
-    <head>
+  <!-- Aquí es donde single-spa inyecta tus microfrontends -->
+  <div id="single-spa-application:app-mf-react"></div>
+  <div id="app-mf-javascript"></div>
 
-        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
-    
-        <script type="systemjs-importmap">
-            {
-                "imports": {
-                    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/es5/system/single-spa.min.js",
-                    "react": "https://esm.sh/react@18.2.0",
-                    "react-dom": "https://esm.sh/react-dom@18.2.0",
-                    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client", 
-                    "app-mf-javascript": "//localhost:9001/main.js",
-                    "app-mf-react": "//localhost:9002/main.js",
-                    "root-config": "//localhost:9000/main.js"
-                }
-            }
-        </script>
-
-        <script src="http://localhost:9001/main.js"></script>
-        <script src="http://localhost:9002/main.js"></script>
-    </head>
-    <body>
-        <div>
-            <div id="single-spa-application:app-mf-react"></div>
-            <div id="app-mf-javascript">
-            </div>
-            <script>
-                System.import("root-config");
-            </script>
-        </div>
-        
-    </body>
+  <!-- 4) Arranca la configuración de rutas y aplicaciones -->
+  <script>
+    System.import('root-config')
+      .catch(err => {
+        console.error('Error al importar root-config:', err);
+      });
+  </script>
 </body>
+</html>
