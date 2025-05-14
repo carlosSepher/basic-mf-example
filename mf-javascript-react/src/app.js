@@ -4,6 +4,8 @@ import singleSpaReact from "single-spa-react";
 
 import Root from "./Root.jsx";
 
+import "./style.css";
+
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
