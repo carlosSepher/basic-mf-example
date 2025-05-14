@@ -17,7 +17,9 @@ module.exports = {
     "single-spa":     "single-spa"
   },
   module: {
-    rules: [{ test: /\.jsx?$/, exclude: /node_modules/, use: "babel-loader" }]
+    rules: [{ test: /\.jsx?$/, exclude: /node_modules/, use: "babel-loader" },
+            { test: /\.css$/, use: ["style-loader", "css-loader"] }
+    ]
   },
   devServer: {
     static: { directory: path.resolve(__dirname, "dist") },
