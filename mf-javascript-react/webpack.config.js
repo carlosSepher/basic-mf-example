@@ -14,7 +14,8 @@ module.exports = {
     react:            "react",
     "react-dom":      "react-dom",
     "react-dom/client": "react-dom/client", // aunque no lo uses ya
-    "single-spa":     "single-spa"
+    "single-spa":     "single-spa",
+    "app-mf-javascript": "app-mf-javascript",
   },
   module: {
     rules: [{ test: /\.jsx?$/, exclude: /node_modules/, use: "babel-loader" },

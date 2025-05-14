@@ -24,3 +24,7 @@ const app = {
 
 
 export const { bootstrap, mount, unmount } = app;
+
+export function square(number) {
+  return number * number;
+}
